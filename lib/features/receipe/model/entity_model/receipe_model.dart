@@ -97,7 +97,9 @@ class ReceipeModel {
         ratings: json["ratings"],
         calories: json["calories"],
         headline: json["headline"],
-        keywords: json["keywords"] == null ? [] : List<String>.from(json["keywords"]!.map((x) => x)),
+        keywords: json["keywords"] == null
+            ? []
+            : List<String>.from(json["keywords"]!.map((x) => x)).where((element) => element.isNotEmpty).toList(),
         products: json["products"] == null ? [] : List<String>.from(json["products"]!.map((x) => x)),
         proteins: json["proteins"],
         favorites: json["favorites"],

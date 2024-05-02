@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:nerd_flutter/features/recwipe/model/entity_model/receipe_model.dart';
+import 'package:nerd_flutter/features/receipe/model/entity_model/receipe_model.dart';
 
 class APIRepo {
   Future<List<ReceipeModel>> getReceipes() async {

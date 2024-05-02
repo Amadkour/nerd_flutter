@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nerd_flutter/features/recwipe/model/entity_model/receipe_model.dart';
+import 'package:nerd_flutter/features/receipe/model/entity_model/receipe_model.dart';
+import 'package:nerd_flutter/features/receipe/view/component/like_action.dart';
+import 'package:nerd_flutter/features/receipe/view/component/rate_action.dart';
 
 class ReceipeItemWidget extends StatelessWidget {
   const ReceipeItemWidget({
@@ -35,7 +37,7 @@ class ReceipeItemWidget extends StatelessWidget {
                       model.image ?? '',
                       height: 50,
                       width: 50,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   // ignore: prefer_const_constructors
@@ -98,27 +100,15 @@ class ReceipeItemWidget extends StatelessWidget {
               ),
 
               ///actions
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Row(
-                    children: [
-                      InkWell(
-                          onTap: toggelRate,
-                          child: model.isRate
-                              ? const Icon(
-                                  CupertinoIcons.star_fill,
-                                  color: Colors.yellow,
-                                )
-                              : const Icon(
-                                  CupertinoIcons.star,
-                                  color: Colors.grey,
-                                )),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      if (model.ratings != null) Text('${model.ratings} rate'),
-                    ],
+                  ///rate
+                  RateAction(
+                    isRate: model.isRate,
+                    ratings: (model.ratings ?? 0).toString(),
+                    toggelRate: toggelRate,
                   ),
 
                   ///divider
@@ -129,25 +119,11 @@ class ReceipeItemWidget extends StatelessWidget {
                   ),
 
                   ///like
-                  Row(
-                    children: [
-                      InkWell(
-                          onTap: toggelFavorite,
-                          child: model.isFavorite
-                              ? const Icon(
-                                  CupertinoIcons.heart_fill,
-                                  color: Colors.red,
-                                )
-                              : const Icon(
-                                  CupertinoIcons.heart,
-                                  color: Colors.red,
-                                )),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text('${model.favorites} likes'),
-                    ],
-                  ),
+                  LikeAction(
+                    isFavorite: model.isFavorite,
+                    favorite: (model.favorites ?? 0).toString(),
+                    toggelFavorite: toggelFavorite,
+                  )
                 ],
               )
             ],

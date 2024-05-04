@@ -1,0 +1,89 @@
+import 'package:eighty_three_native_component/eighty_three_component.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:res/core/constant/keys.dart';
+import '../../../helper/helper.dart';
+import '../../../shared/values.dart';
+import '../../../start_app_test.dart';
+
+void main() {
+  group('login   flow', () {
+    testWidgets('login flow', (WidgetTester tester) async {
+      ///start app flow
+      await startApp(tester);
+
+      await login(tester);
+
+      await logout(tester);
+    });
+  });
+}
+
+Future<void> logout(WidgetTester tester) async {
+  final Finder profileIcon = find.byTooltip('profile');
+  await tester.tap(profileIcon);
+  await tester.pumpAndSettle();
+
+  await scroll(
+    tester,
+    logoutFinder,
+    find.bySubtype<SingleChildScrollView>().first,
+  );
+
+  await tester.tap(find.byKey(logOutButtonKey));
+  await tester.pumpAndSettle();
+}
+
+Future<void> login(WidgetTester tester,
+    {String? password,
+    bool loginByPhone = false,
+    String? id,
+    String? phone}) async {
+  debugPrint('========#   login started #=========');
+
+  if (loginByPhone) {
+    await tester.tap(switchFirstButton);
+    await tester.pumpAndSettle();
+
+    await isPresent(loginUserPhoneFinder, tester);
+
+    await tester.enterText(loginUserPhoneFinder, phone ?? loginPhoneNumberValue);
+
+    await tester.pumpAndSettle();
+  } else {
+    await isPresent(loginUserIdFinder, tester);
+    await tester.enterText(loginUserIdFinder, id ?? loginIdValue);
+  }
+
+  /// fields input
+
+  await isPresent(loginUserPasswordFinder, tester);
+  await tester.enterText(
+      loginUserPasswordFinder, password ?? loginPasswordValue);
+
+  await tester.pumpAndSettle();
+
+  ///toggle password visibility
+
+  await togglePasswordVisibility(tester);
+
+  ///login request
+  await ensureWidgetIsVisible(tester, primaryButtonFinder);
+  await tester.tap(primaryButtonFinder);
+  await tester.pumpAndSettle();
+  final int count = tester.widgetList(find.text(tr("pin_code_setup_massage"))).length;
+  if(count>0){
+    await writeCode(tester,code: "1111");
+    final bool isBiometricDialogShown = tester.widgetList(find.text(tr("notNow"))).isNotEmpty;
+    if(isBiometricDialogShown){
+      await clickOnButton(tester, find.text(tr("notNow")).first);
+    }
+  }
+  await waitUntilVisible(tester, find.byTooltip('profile'));
+  debugPrint('========#login ended #=========');
+}
+
+Future<void> togglePasswordVisibility(WidgetTester tester) async {
+  await tester.tap(find.byKey(const Key("show_password_button")));
+  await tester.pumpAndSettle();
+}

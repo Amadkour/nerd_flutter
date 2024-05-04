@@ -10,11 +10,10 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   ProfileCubit() : super(ProfileStateLoaded());
 
-  List<ReceipeModel> receipes = [];
-
   void addItemToFavorite(ReceipeModel model) {
+    log(ReciepeCubit.instance.receipes.length.toString());
+
     final int index = ReciepeCubit.instance.receipes.indexWhere((element) => element.id == model.id);
-    receipes[index].toggelFavorite;
     ReciepeCubit.instance.addItemToFavorite(index);
     emit(ProfileStateLoaded());
   }
@@ -22,7 +21,6 @@ class ProfileCubit extends Cubit<ProfileState> {
   void addItemToRate(ReceipeModel model) {
     log(ReciepeCubit.instance.receipes.length.toString());
     final int index = ReciepeCubit.instance.receipes.indexWhere((element) => element.id == model.id);
-    receipes[index].toggelRate;
     ReciepeCubit.instance.addItemToRate(index);
 
     emit(ProfileStateLoaded());

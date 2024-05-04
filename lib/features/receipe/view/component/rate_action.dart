@@ -29,7 +29,7 @@ class RateAction extends StatelessWidget {
         const SizedBox(
           width: 5,
         ),
-        Text('${ratings} rate'),
+        Text('$ratings rate'),
       ],
     );
   }

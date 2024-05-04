@@ -19,7 +19,7 @@ class ReceipeModel {
   final String? fibers;
   final dynamic rating;
   final String? country;
-  dynamic ratings;
+  int? ratings;
   final String? calories;
   final String? headline;
   final List<String>? keywords;

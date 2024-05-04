@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nerd_flutter/core/extensions/context_extension.dart';
+import 'package:nerd_flutter/core/utils/context_extension.dart';
 import 'package:nerd_flutter/features/profile/controller/profile_cubit.dart';
 import 'package:nerd_flutter/features/profile/controller/profile_state.dart';
 import 'package:nerd_flutter/features/profile/view/component/iterms_list_widget.dart';
@@ -31,6 +31,16 @@ class ReciepePage extends StatelessWidget {
                     children: [
                       Image.network(
                         model.image ?? '',
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                                  : null,
+                            ),
+                          );
+                        },
                         width: context.width,
                       ),
                       Positioned(
@@ -43,14 +53,14 @@ class ReciepePage extends StatelessWidget {
                             children: [
                               RateAction(
                                 isRate: model.isRate,
-                                ratings: model.ratings ?? '',
+                                ratings: (model.ratings ?? 0).toString(),
                                 toggelRate: () => controller.addItemToRate(model),
                               ),
                               const SizedBox(
                                 width: 10,
                               ),
                               LikeAction(
-                                isFavorite: model.isRate,
+                                isFavorite: model.isFavorite,
                                 favorite: (model.favorites ?? 0).toString(),
                                 toggelFavorite: () => controller.addItemToFavorite(model),
                               ),

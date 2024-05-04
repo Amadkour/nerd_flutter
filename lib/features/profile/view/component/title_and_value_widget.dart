@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nerd_flutter/core/extensions/context_extension.dart';
+import 'package:nerd_flutter/core/utils/context_extension.dart';
 
 class ItemTitleAndDescriptionWidget extends StatelessWidget {
   const ItemTitleAndDescriptionWidget({super.key, required this.title, required this.value});

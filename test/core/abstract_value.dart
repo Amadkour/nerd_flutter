@@ -4,7 +4,7 @@ class ValueClass {
   final FormData? successfulBody;
   final FormData? failureBody;
   final Map<String, dynamic>? successfulParams;
-  final Map<String, dynamic>? successfulResponse;
+  final List<Map<String, dynamic>>? successfulResponse;
   final Map<String, dynamic>? failureParams;
   final Map<String, dynamic>? successfulHeader;
   final Map<String, dynamic>? failureHeader;

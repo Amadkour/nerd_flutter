@@ -11,7 +11,7 @@ import 'package:nerd_flutter/features/receipe/view/component/rate_action.dart';
 
 class ReciepePage extends StatelessWidget {
   const ReciepePage({super.key, required this.model});
-  final ReceipeModel model;
+  final RecipeModel model;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,8 @@ class ReciepePage extends StatelessWidget {
                           return Center(
                             child: CircularProgressIndicator(
                               value: loadingProgress.expectedTotalBytes != null
-                                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
                                   : null,
                             ),
                           );
@@ -48,13 +49,16 @@ class ReciepePage extends StatelessWidget {
                         right: 10,
                         child: Container(
                           padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10)),
                           child: Row(
                             children: [
                               RateAction(
                                 isRate: model.isRate,
                                 ratings: (model.ratings ?? 0).toString(),
-                                toggelRate: () => controller.addItemToRate(model),
+                                toggelRate: () =>
+                                    controller.addItemToRate(model),
                               ),
                               const SizedBox(
                                 width: 10,
@@ -62,7 +66,8 @@ class ReciepePage extends StatelessWidget {
                               LikeAction(
                                 isFavorite: model.isFavorite,
                                 favorite: (model.favorites ?? 0).toString(),
-                                toggelFavorite: () => controller.addItemToFavorite(model),
+                                toggelFavorite: () =>
+                                    controller.addItemToFavorite(model),
                               ),
                             ],
                           ),
@@ -76,8 +81,10 @@ class ReciepePage extends StatelessWidget {
 
             ///description
 
-            ItemTitleAndDescriptionWidget(title: 'description', value: model.description ?? ''),
-            ItemTitleAndDescriptionWidget(title: 'calories', value: model.calories ?? ''),
+            ItemTitleAndDescriptionWidget(
+                title: 'description', value: model.description ?? ''),
+            ItemTitleAndDescriptionWidget(
+                title: 'calories', value: model.calories ?? ''),
             if ((model.deliverableIngredients ?? []).isNotEmpty)
               ItemsListWidget(
                 title: 'deliverable Ingredients',

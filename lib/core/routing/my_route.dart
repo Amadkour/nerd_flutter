@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nerd_flutter/features/auth/registration/view/page/login_page.dart';
+import 'package:nerd_flutter/features/login/view/page/login_page.dart';
 import 'package:nerd_flutter/features/profile/view/page/reciepe_profile.dart';
 import 'package:nerd_flutter/features/receipe/model/entity_model/receipe_model.dart';
-import 'package:nerd_flutter/features/receipe/view/page/product_page.dart';
+import 'package:nerd_flutter/features/receipe/view/page/recipe_page.dart';
 
 class MyRoute {
   static List<Route<dynamic>> initialRoutes = [
@@ -16,7 +16,7 @@ class MyRoute {
       case 'login':
         return MaterialPageRoute(builder: (_) => const LoginPage());
       case 'profile':
-        final ReceipeModel model = settings.arguments as ReceipeModel;
+        final RecipeModel model = settings.arguments as RecipeModel;
         return MaterialPageRoute(
             builder: (_) => ReciepePage(
                   model: model,

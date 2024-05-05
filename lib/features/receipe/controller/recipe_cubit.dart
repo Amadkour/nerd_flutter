@@ -1,48 +1,50 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nerd_flutter/features/receipe/controller/receipe_state.dart';
+import 'package:nerd_flutter/features/receipe/controller/recipe_state.dart';
 import 'package:nerd_flutter/features/receipe/model/entity_model/receipe_model.dart';
 import 'package:nerd_flutter/features/receipe/model/repo/api_repo.dart';
 
-class ReciepeCubit extends Cubit<ReceipeState> {
-  static ReciepeCubit instance = ReciepeCubit();
+class RecipeCubit extends Cubit<RecipeState> {
+  static RecipeCubit instance = RecipeCubit();
 
-  ReciepeCubit({APIRepo? repo}) : super(ReceipeStateLoading()) {
+  RecipeCubit({APIRepo? repo}) : super(RecipeStateLoading()) {
+    _repo = repo ?? APIRepo.instance;
     init();
   }
 
-  List<ReceipeModel> receipes = [];
+  List<RecipeModel> recipes = [];
 
   late APIRepo _repo;
 
   Future<void> init() async {
     try {
-      emit(ReceipeStateLoading());
-      receipes = await _repo.getRecipes();
-      if (receipes.isEmpty) {
-        emit(ReceipeStateEmpty());
+      emit(RecipeStateLoading());
+      recipes = await _repo.getRecipes();
+      if (recipes.isEmpty) {
+        emit(RecipeStateEmpty());
       } else {
-        emit(ReceipeStateLoaded());
+        emit(RecipeStateLoaded());
       }
     } catch (e) {
-      emit(ReceipeStateError(error: e.toString()));
+      emit(RecipeStateError(error: e.toString()));
     }
   }
 
   void addItemToFavorite(int index) {
     try {
-      receipes[index].toggelFavorite;
-      emit(ReceipeStateLoaded());
+      recipes[index].toggelFavorite;
+      emit(RecipeStateLoaded());
     } catch (e) {
-      emit(ReceipeStateError(error: e.toString()));
+      print(recipes.length.toString());
+      emit(RecipeStateError(error: e.toString()));
     }
   }
 
   void addItemToRate(int index) {
     try {
-      receipes[index].toggelRate;
-      emit(ReceipeStateLoaded());
+      recipes[index].toggelRate;
+      emit(RecipeStateLoaded());
     } catch (e) {
-      emit(ReceipeStateError(error: e.toString()));
+      emit(RecipeStateError(error: e.toString()));
     }
   }
 }

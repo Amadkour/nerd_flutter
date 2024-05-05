@@ -11,7 +11,7 @@ class ReceipeItemWidget extends StatelessWidget {
     this.toggelFavorite,
     this.toggelRate,
   });
-  final ReceipeModel model;
+  final RecipeModel model;
   final void Function()? toggelFavorite;
   final void Function()? toggelRate;
   @override
@@ -88,7 +88,10 @@ class ReceipeItemWidget extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           model.description ?? 'description',
-                          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Colors.grey),
+                          style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.grey),
                         ),
                       ],
                     ),

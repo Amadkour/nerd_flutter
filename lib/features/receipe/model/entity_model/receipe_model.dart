@@ -1,14 +1,4 @@
-// To parse this JSON data, do
-//
-//     final receipeModel = receipeModelFromJson(jsonString);
-
-import 'dart:convert';
-
-ReceipeModel receipeModelFromJson(String str) => ReceipeModel.fromJson(json.decode(str));
-
-String receipeModelToJson(ReceipeModel data) => json.encode(data.toJson());
-
-class ReceipeModel {
+class RecipeModel {
   final String? id;
   final String? fats;
   final String? name;
@@ -56,7 +46,7 @@ class ReceipeModel {
     return isRate;
   }
 
-  ReceipeModel({
+  RecipeModel({
     this.id,
     this.fats,
     this.name,
@@ -83,13 +73,15 @@ class ReceipeModel {
     this.undeliverableIngredients,
   });
 
-  factory ReceipeModel.fromJson(Map<String, dynamic> json) => ReceipeModel(
+  factory RecipeModel.fromJson(Map<String, dynamic> json) => RecipeModel(
         id: json["id"],
         fats: json["fats"],
         name: json["name"],
         time: json["time"],
         image: json["image"],
-        weeks: json["weeks"] == null ? [] : List<String>.from(json["weeks"]!.map((x) => x)),
+        weeks: json["weeks"] == null
+            ? []
+            : List<String>.from(json["weeks"]!.map((x) => x)),
         carbos: json["carbos"],
         fibers: json["fibers"],
         rating: json["rating"],
@@ -99,21 +91,28 @@ class ReceipeModel {
         headline: json["headline"],
         keywords: json["keywords"] == null
             ? []
-            : List<String>.from(json["keywords"]!.map((x) => x)).where((element) => element.isNotEmpty).toList(),
-        products: json["products"] == null ? [] : List<String>.from(json["products"]!.map((x) => x)),
+            : List<String>.from(json["keywords"]!.map((x) => x))
+                .where((element) => element.isNotEmpty)
+                .toList(),
+        products: json["products"] == null
+            ? []
+            : List<String>.from(json["products"]!.map((x) => x)),
         proteins: json["proteins"],
         favorites: json["favorites"],
         difficulty: json["difficulty"],
         description: json["description"],
         highlighted: json["highlighted"],
-        ingredients: json["ingredients"] == null ? [] : List<String>.from(json["ingredients"]!.map((x) => x)),
+        ingredients: json["ingredients"] == null
+            ? []
+            : List<String>.from(json["ingredients"]!.map((x) => x)),
         incompatibilities: json["incompatibilities"],
         deliverableIngredients: json["deliverable_ingredients"] == null
             ? []
             : List<String>.from(json["deliverable_ingredients"]!.map((x) => x)),
         undeliverableIngredients: json["undeliverable_ingredients"] == null
             ? []
-            : List<dynamic>.from(json["undeliverable_ingredients"]!.map((x) => x)),
+            : List<dynamic>.from(
+                json["undeliverable_ingredients"]!.map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -130,18 +129,24 @@ class ReceipeModel {
         "ratings": ratings,
         "calories": calories,
         "headline": headline,
-        "keywords": keywords == null ? [] : List<dynamic>.from(keywords!.map((x) => x)),
-        "products": products == null ? [] : List<dynamic>.from(products!.map((x) => x)),
+        "keywords":
+            keywords == null ? [] : List<dynamic>.from(keywords!.map((x) => x)),
+        "products":
+            products == null ? [] : List<dynamic>.from(products!.map((x) => x)),
         "proteins": proteins,
         "favorites": favorites,
         "difficulty": difficulty,
         "description": description,
         "highlighted": highlighted,
-        "ingredients": ingredients == null ? [] : List<dynamic>.from(ingredients!.map((x) => x)),
+        "ingredients": ingredients == null
+            ? []
+            : List<dynamic>.from(ingredients!.map((x) => x)),
         "incompatibilities": incompatibilities,
-        "deliverable_ingredients":
-            deliverableIngredients == null ? [] : List<dynamic>.from(deliverableIngredients!.map((x) => x)),
-        "undeliverable_ingredients":
-            undeliverableIngredients == null ? [] : List<dynamic>.from(undeliverableIngredients!.map((x) => x)),
+        "deliverable_ingredients": deliverableIngredients == null
+            ? []
+            : List<dynamic>.from(deliverableIngredients!.map((x) => x)),
+        "undeliverable_ingredients": undeliverableIngredients == null
+            ? []
+            : List<dynamic>.from(undeliverableIngredients!.map((x) => x)),
       };
 }

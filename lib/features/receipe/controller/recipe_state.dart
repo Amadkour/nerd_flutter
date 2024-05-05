@@ -1,13 +1,13 @@
-sealed class ReceipeState {}
+sealed class RecipeState {}
 
-final class ReceipeStateLoading extends ReceipeState {}
+final class RecipeStateLoading extends RecipeState {}
 
-final class ReceipeStateLoaded extends ReceipeState {}
+final class RecipeStateLoaded extends RecipeState {}
 
-final class ReceipeStateError extends ReceipeState {
+final class RecipeStateError extends RecipeState {
   final String error;
 
-  ReceipeStateError({required this.error});
+  RecipeStateError({required this.error});
 }
 
-final class ReceipeStateEmpty extends ReceipeState {}
+final class RecipeStateEmpty extends RecipeState {}

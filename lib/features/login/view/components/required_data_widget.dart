@@ -25,9 +25,10 @@ class RequiredDataWidget extends StatelessWidget {
 
                 ///logo
                 const Text(
-                  "Login in NERD",
+                  "NERD",
                   style: TextStyle(
                     fontSize: 20,
+                    color: Colors.blueAccent,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

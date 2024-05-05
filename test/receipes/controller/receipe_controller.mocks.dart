@@ -3,11 +3,17 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i5;
 
+import 'package:dio/dio.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:nerd_flutter/features/recipe/model/entity_model/receipe_model.dart' as _i4;
-import 'package:nerd_flutter/features/recipe/model/repo/recipe_repo.dart' as _i2;
+import 'package:nerd_flutter/core/configration/local_database.dart' as _i3;
+import 'package:nerd_flutter/features/recipe/model/entity_model/receipe_model.dart'
+    as _i6;
+import 'package:nerd_flutter/features/recipe/model/repo/favorite_repo.dart'
+    as _i7;
+import 'package:nerd_flutter/features/recipe/model/repo/recipe_repo.dart'
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -22,20 +28,99 @@ import 'package:nerd_flutter/features/recipe/model/repo/recipe_repo.dart' as _i2
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [APIRepo].
+class _FakeDio_0 extends _i1.SmartFake implements _i2.Dio {
+  _FakeDio_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeMyDatabase_1 extends _i1.SmartFake implements _i3.MyDatabase {
+  _FakeMyDatabase_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+/// A class which mocks [RecipeRepo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAPIRepo extends _i1.Mock implements _i2.RecipeRepo {
-  MockAPIRepo() {
+class MockRecipeRepo extends _i1.Mock implements _i4.RecipeRepo {
+  MockRecipeRepo() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i4.RecipeModel>> getRecipes() => (super.noSuchMethod(
+  _i2.Dio get dio => (super.noSuchMethod(
+        Invocation.getter(#dio),
+        returnValue: _FakeDio_0(
+          this,
+          Invocation.getter(#dio),
+        ),
+      ) as _i2.Dio);
+
+  @override
+  _i5.Future<List<_i6.RecipeModel>> getRecipes() => (super.noSuchMethod(
         Invocation.method(
           #getRecipes,
           [],
         ),
-        returnValue: _i3.Future<List<_i4.RecipeModel>>.value(<_i4.RecipeModel>[]),
-      ) as _i3.Future<List<_i4.RecipeModel>>);
+        returnValue:
+            _i5.Future<List<_i6.RecipeModel>>.value(<_i6.RecipeModel>[]),
+      ) as _i5.Future<List<_i6.RecipeModel>>);
+}
+
+/// A class which mocks [FavoriteRepo].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFavoriteRepo extends _i1.Mock implements _i7.FavoriteRepo {
+  MockFavoriteRepo() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.MyDatabase get db => (super.noSuchMethod(
+        Invocation.getter(#db),
+        returnValue: _FakeMyDatabase_1(
+          this,
+          Invocation.getter(#db),
+        ),
+      ) as _i3.MyDatabase);
+
+  @override
+  _i5.Future<void> deleteItem({required String? id}) => (super.noSuchMethod(
+        Invocation.method(
+          #deleteItem,
+          [],
+          {#id: id},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<List<String>> getItems() => (super.noSuchMethod(
+        Invocation.method(
+          #getItems,
+          [],
+        ),
+        returnValue: _i5.Future<List<String>>.value(<String>[]),
+      ) as _i5.Future<List<String>>);
+
+  @override
+  _i5.Future<void> insertItem({required String? id}) => (super.noSuchMethod(
+        Invocation.method(
+          #insertItem,
+          [],
+          {#id: id},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }

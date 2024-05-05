@@ -8,12 +8,15 @@ class ReceipeItemWidget extends StatelessWidget {
   const ReceipeItemWidget({
     super.key,
     required this.model,
-    this.toggelFavorite,
-    this.toggelRate,
+    required this.toggelFavorite,
+    required this.toggelRate,
+    required this.onConfirmSaveToDatabase,
   });
   final RecipeModel model;
-  final void Function()? toggelFavorite;
-  final void Function()? toggelRate;
+  final void Function() toggelFavorite;
+  final void Function() toggelRate;
+  final Future<void> Function() onConfirmSaveToDatabase;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -123,6 +126,9 @@ class ReceipeItemWidget extends StatelessWidget {
                     isFavorite: model.isFavorite,
                     favorite: (model.favorites ?? 0).toString(),
                     toggelFavorite: toggelFavorite,
+                    onConfirmSaveToDatabase: () async {
+                      await onConfirmSaveToDatabase();
+                    },
                   )
                 ],
               )

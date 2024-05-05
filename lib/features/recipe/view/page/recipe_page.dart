@@ -39,6 +39,8 @@ class ReceipePage extends StatelessWidget {
                                   model: controller.recipes[index],
                                   toggelFavorite: () => controller.addItemToFavorite(index),
                                   toggelRate: () => controller.addItemToRate(index),
+                                  onConfirmSaveToDatabase: () async =>
+                                      await controller.addItemToFavoriteDatabase(index),
                                 ),
                                 onTap: () =>
                                     Navigator.pushNamed(context, 'profile', arguments: controller.recipes[index]),

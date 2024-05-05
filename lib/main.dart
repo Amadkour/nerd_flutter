@@ -5,10 +5,10 @@ import 'package:nerd_flutter/core/routing/my_route.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setup();
-  MaterialApp materialApp = const MaterialApp(
+  MaterialApp materialApp = MaterialApp(
     debugShowCheckedModeBanner: false,
-    onGenerateRoute: MyRoute.onNavigateByName,
-    initialRoute: 'login',
+    onGenerateRoute: ioc<MyRoute>().onNavigateByName,
+    initialRoute: 'recipe',
   );
   runApp(materialApp);
 }

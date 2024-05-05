@@ -5,7 +5,7 @@ class FavoriteRepo {
 
   FavoriteRepo({required this.db});
 
-  Future<void> deleteItem({required int id}) async {
+  Future<void> deleteItem({required String id}) async {
     await (await db.instance).delete(db.tableName, where: 'id=?', whereArgs: [id]);
   }
 

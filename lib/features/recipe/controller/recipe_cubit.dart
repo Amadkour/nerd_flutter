@@ -20,15 +20,13 @@ class RecipeCubit extends Cubit<RecipeState> {
   Future<void> init() async {
     try {
       emit(RecipeStateLoading());
-
       recipes = await recipeRepo.getRecipes();
       favoriteItems = await favoriteRepo.getItems();
-
-      ///prepare favorite saved items
-
       if (recipes.isEmpty) {
         emit(RecipeStateEmpty());
       } else {
+        ///prepare favorite saved items
+        prepareFavorite();
         emit(RecipeStateLoaded());
       }
     } catch (e) {
@@ -36,9 +34,24 @@ class RecipeCubit extends Cubit<RecipeState> {
     }
   }
 
-  void addItemToFavorite(int index) {
+  Future<void> addItemToFavorite(int index) async {
     try {
       recipes[index].toggelFavorite;
+      if (!recipes[index].isFavorite) {
+        await favoriteRepo.deleteItem(id: recipes[index].id ?? '');
+      }
+      emit(RecipeStateLoaded());
+    } catch (e) {
+      emit(RecipeStateError(error: e.toString()));
+    }
+  }
+
+  Future<void> addItemToFavoriteDatabase(int index) async {
+    try {
+      recipes[index].toggelFavorite;
+      if (recipes[index].isFavorite) {
+        await favoriteRepo.insertItem(id: recipes[index].id ?? '');
+      }
       emit(RecipeStateLoaded());
     } catch (e) {
       emit(RecipeStateError(error: e.toString()));
@@ -51,6 +64,14 @@ class RecipeCubit extends Cubit<RecipeState> {
       emit(RecipeStateLoaded());
     } catch (e) {
       emit(RecipeStateError(error: e.toString()));
+    }
+  }
+
+  prepareFavorite() {
+    for (int i = 0; i < recipes.length; i++) {
+      if (favoriteItems.contains(recipes[i].id ?? '')) {
+        recipes[i].toggelFavorite;
+      }
     }
   }
 }

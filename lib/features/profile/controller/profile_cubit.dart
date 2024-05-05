@@ -15,6 +15,12 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(ProfileStateLoaded());
   }
 
+  Future<void> addItemToFavoriteDatabase(RecipeModel model) async {
+    final int index = ioc<RecipeCubit>().recipes.indexWhere((element) => element.id == model.id);
+    await ioc<RecipeCubit>().addItemToFavoriteDatabase(index);
+    emit(ProfileStateLoaded());
+  }
+
   void addItemToRate(RecipeModel model) {
     final int index = ioc<RecipeCubit>().recipes.indexWhere((element) => element.id == model.id);
     ioc<RecipeCubit>().addItemToRate(index);

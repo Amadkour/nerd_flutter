@@ -64,6 +64,9 @@ class ReciepePage extends StatelessWidget {
                                   isFavorite: model.isFavorite,
                                   favorite: (model.favorites ?? 0).toString(),
                                   toggelFavorite: () => controller.addItemToFavorite(model),
+                                  onConfirmSaveToDatabase: () async {
+                                    await controller.addItemToFavoriteDatabase(model);
+                                  },
                                 ),
                               ],
                             ),

@@ -1,4 +1,4 @@
-# nerd_flutter
+# nerd_flutter description
 
 To facilitate a faster and more thorough code review process, it's essential to provide comprehensive documentation of your solution. Here's a breakdown of the key components of our approach:
 
@@ -10,4 +10,5 @@ To facilitate a faster and more thorough code review process, it's essential to 
     The application's features are divided into three distinct components: login, recipe, and recipe profile. Each feature follows the Model-View-Controller (MVC) pattern for structured and modular development.
 - Core File for Shared Components:
     All shared components and utilities are isolated within the core file. This ensures that common functionalities can be easily accessed and utilized across all features of the application.
+
 

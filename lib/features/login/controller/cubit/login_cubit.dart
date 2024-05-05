@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -13,14 +11,16 @@ class LoginCubit extends Cubit<RegistrationState> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  void onPressedConfirmButton(BuildContext context) {
-    if (formKey.currentState!.validate()) {
-      Navigator.pushNamed(
-        context,
-        'recipe',
-      );
+  ///correct credintionals
+  final String correctMail = 'nerd@nerd.com';
+  final String correctPassword = 'Nerd@123';
+  bool onPressedConfirmButton() {
+    if (formKey.currentState!.validate() &&
+        correctMail == mailController.text &&
+        correctPassword == passwordController.text) {
+      return true;
     } else {
-      log('invalid inputs');
+      return false;
     }
   }
 }

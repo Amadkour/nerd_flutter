@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nerd_flutter/core/overlay/overlay.dart';
 import 'package:nerd_flutter/core/utils/context_extension.dart';
 import 'package:nerd_flutter/features/login/controller/cubit/login_cubit.dart';
 
@@ -27,7 +28,17 @@ class BottomNavigationWiget extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(20)),
                 child: InkWell(
                     onTap: () async {
-                      controller.onPressedConfirmButton(context);
+                      final bool result = controller.onPressedConfirmButton();
+                      if (result) {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          'recipe',
+                        );
+                      } else {
+                        MyOverlay.instance.showMyToast(
+                          "invaild Credentials",
+                        );
+                      }
                     },
                     child: const Text(
                       "Confirm",

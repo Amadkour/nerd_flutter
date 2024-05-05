@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nerd_flutter/features/receipe/model/entity_model/receipe_model.dart';
-import 'package:nerd_flutter/features/receipe/view/component/like_action.dart';
-import 'package:nerd_flutter/features/receipe/view/component/rate_action.dart';
+import 'package:nerd_flutter/features/recipe/model/entity_model/receipe_model.dart';
+import 'package:nerd_flutter/features/recipe/view/component/like_action.dart';
+import 'package:nerd_flutter/features/recipe/view/component/rate_action.dart';
 
 class ReceipeItemWidget extends StatelessWidget {
   const ReceipeItemWidget({
@@ -88,10 +88,7 @@ class ReceipeItemWidget extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           model.description ?? 'description',
-                          style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.grey),
+                          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Colors.grey),
                         ),
                       ],
                     ),

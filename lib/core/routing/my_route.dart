@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nerd_flutter/features/login/view/page/login_page.dart';
 import 'package:nerd_flutter/features/profile/view/page/reciepe_profile.dart';
-import 'package:nerd_flutter/features/receipe/model/entity_model/receipe_model.dart';
-import 'package:nerd_flutter/features/receipe/view/page/recipe_page.dart';
+import 'package:nerd_flutter/features/recipe/model/entity_model/receipe_model.dart';
+import 'package:nerd_flutter/features/recipe/view/page/recipe_page.dart';
 
 class MyRoute {
   static List<Route<dynamic>> initialRoutes = [

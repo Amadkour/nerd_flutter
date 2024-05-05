@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nerd_flutter/features/receipe/view/page/recipe_page.dart';
+import 'package:nerd_flutter/features/recipe/view/page/recipe_page.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

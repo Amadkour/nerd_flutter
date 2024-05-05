@@ -15,12 +15,9 @@ import 'package:dio/src/transformer.dart' as _i4;
 import 'package:flutter_bloc/flutter_bloc.dart' as _i14;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i13;
-import 'package:nerd_flutter/features/receipe/controller/recipe_cubit.dart'
-    as _i10;
-import 'package:nerd_flutter/features/receipe/controller/recipe_state.dart'
-    as _i12;
-import 'package:nerd_flutter/features/receipe/model/entity_model/receipe_model.dart'
-    as _i11;
+import 'package:nerd_flutter/features/recipe/controller/recipe_cubit.dart' as _i10;
+import 'package:nerd_flutter/features/recipe/controller/recipe_state.dart' as _i12;
+import 'package:nerd_flutter/features/recipe/model/entity_model/receipe_model.dart' as _i11;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -45,8 +42,7 @@ class _FakeBaseOptions_0 extends _i1.SmartFake implements _i2.BaseOptions {
         );
 }
 
-class _FakeHttpClientAdapter_1 extends _i1.SmartFake
-    implements _i3.HttpClientAdapter {
+class _FakeHttpClientAdapter_1 extends _i1.SmartFake implements _i3.HttpClientAdapter {
   _FakeHttpClientAdapter_1(
     Object parent,
     Invocation parentInvocation,
@@ -122,8 +118,7 @@ class MockDio extends _i1.Mock implements _i7.Dio {
       ) as _i3.HttpClientAdapter);
 
   @override
-  set httpClientAdapter(_i3.HttpClientAdapter? _httpClientAdapter) =>
-      super.noSuchMethod(
+  set httpClientAdapter(_i3.HttpClientAdapter? _httpClientAdapter) => super.noSuchMethod(
         Invocation.setter(
           #httpClientAdapter,
           _httpClientAdapter,
@@ -629,8 +624,7 @@ class MockDio extends _i1.Mock implements _i7.Dio {
             #options: options,
           },
         ),
-        returnValue:
-            _i8.Future<_i6.Response<dynamic>>.value(_FakeResponse_4<dynamic>(
+        returnValue: _i8.Future<_i6.Response<dynamic>>.value(_FakeResponse_4<dynamic>(
           this,
           Invocation.method(
             #download,
@@ -678,8 +672,7 @@ class MockDio extends _i1.Mock implements _i7.Dio {
             #options: options,
           },
         ),
-        returnValue:
-            _i8.Future<_i6.Response<dynamic>>.value(_FakeResponse_4<dynamic>(
+        returnValue: _i8.Future<_i6.Response<dynamic>>.value(_FakeResponse_4<dynamic>(
           this,
           Invocation.method(
             #downloadUri,
@@ -777,8 +770,7 @@ class MockDio extends _i1.Mock implements _i7.Dio {
       ) as _i8.Future<_i6.Response<T>>);
 
   @override
-  _i8.Future<_i6.Response<T>> fetch<T>(_i2.RequestOptions? requestOptions) =>
-      (super.noSuchMethod(
+  _i8.Future<_i6.Response<T>> fetch<T>(_i2.RequestOptions? requestOptions) => (super.noSuchMethod(
         Invocation.method(
           #fetch,
           [requestOptions],

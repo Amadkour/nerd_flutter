@@ -1,8 +1,8 @@
 import 'package:mockito/annotations.dart';
-import 'package:nerd_flutter/features/receipe/model/repo/api_repo.dart';
+import 'package:nerd_flutter/features/recipe/model/repo/recipe_repo.dart';
 
 @GenerateMocks(<Type>[
-  APIRepo,
+  RecipeRepo,
 ])
 Future<void> main() async {}
 // void globalSetup( {String? tableName}) {

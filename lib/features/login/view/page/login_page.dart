@@ -10,26 +10,26 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: BlocProvider<LoginCubit>(
-        create: (context) => LoginCubit(),
-        child: BlocBuilder<LoginCubit, RegistrationState>(
-          builder: (context, state) {
-            final LoginCubit controller = context.read<LoginCubit>();
-            return Scaffold(
-              appBar: AppBar(),
-              body: RequiredDataWidget(
+    return BlocProvider<LoginCubit>(
+      create: (context) => LoginCubit(),
+      child: BlocBuilder<LoginCubit, RegistrationState>(
+        builder: (context, state) {
+          final LoginCubit controller = context.read<LoginCubit>();
+          return Scaffold(
+            appBar: AppBar(),
+            body: SafeArea(
+              child: RequiredDataWidget(
                 controller: controller,
               ),
-              bottomNavigationBar: SizedBox(
-                height: context.height / 4,
-                child: BottomNavigationWiget(
-                  controller: controller,
-                ),
+            ),
+            bottomNavigationBar: SizedBox(
+              height: context.height / 4,
+              child: BottomNavigationWiget(
+                controller: controller,
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

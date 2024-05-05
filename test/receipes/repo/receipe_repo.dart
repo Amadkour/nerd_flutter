@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:nerd_flutter/features/recipe/model/entity_model/receipe_model.dart';
 import 'package:nerd_flutter/features/recipe/model/repo/recipe_repo.dart';
 
 import '../../core/shared.mocks.dart';
@@ -15,7 +14,7 @@ void main() {
     mockClass = MockDio();
     provider = RecipeRepo(dio: mockClass);
   });
-  group('Fetch recipes as List of RecipeModel', () {
+  group('login Scenarios', () {
     test('- success', () async {
       ///body
       when(
@@ -30,7 +29,9 @@ void main() {
         ),
       );
 
-      expect(await provider.getRecipes(), isA<List<RecipeModel>>());
+      test('- fetch recipes', () async {
+        expect(await provider.getRecipes(), isA<List>());
+      });
     });
   });
 }

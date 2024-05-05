@@ -1,24 +1,31 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nerd_flutter/features/receipe/controller/recipe_state.dart';
-import 'package:nerd_flutter/features/receipe/model/entity_model/receipe_model.dart';
-import 'package:nerd_flutter/features/receipe/model/repo/api_repo.dart';
+import 'package:nerd_flutter/features/recipe/controller/recipe_state.dart';
+import 'package:nerd_flutter/features/recipe/model/entity_model/receipe_model.dart';
+import 'package:nerd_flutter/features/recipe/model/repo/favorite_repo.dart';
+import 'package:nerd_flutter/features/recipe/model/repo/recipe_repo.dart';
 
 class RecipeCubit extends Cubit<RecipeState> {
-  static RecipeCubit instance = RecipeCubit();
-
-  RecipeCubit({APIRepo? repo}) : super(RecipeStateLoading()) {
-    _repo = repo ?? APIRepo.instance;
+  RecipeCubit({
+    required this.recipeRepo,
+    required this.favoriteRepo,
+  }) : super(RecipeStateLoading()) {
     init();
   }
+  final RecipeRepo recipeRepo;
+  final FavoriteRepo favoriteRepo;
 
   List<RecipeModel> recipes = [];
-
-  late APIRepo _repo;
+  List<String> favoriteItems = [];
 
   Future<void> init() async {
     try {
       emit(RecipeStateLoading());
-      recipes = await _repo.getRecipes();
+
+      recipes = await recipeRepo.getRecipes();
+      favoriteItems = await favoriteRepo.getItems();
+
+      ///prepare favorite saved items
+
       if (recipes.isEmpty) {
         emit(RecipeStateEmpty());
       } else {
@@ -34,7 +41,6 @@ class RecipeCubit extends Cubit<RecipeState> {
       recipes[index].toggelFavorite;
       emit(RecipeStateLoaded());
     } catch (e) {
-      print(recipes.length.toString());
       emit(RecipeStateError(error: e.toString()));
     }
   }

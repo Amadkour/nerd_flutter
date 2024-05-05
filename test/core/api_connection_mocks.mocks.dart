@@ -6,9 +6,8 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:nerd_flutter/features/receipe/model/entity_model/receipe_model.dart'
-    as _i4;
-import 'package:nerd_flutter/features/receipe/model/repo/api_repo.dart' as _i2;
+import 'package:nerd_flutter/features/recipe/model/entity_model/receipe_model.dart' as _i4;
+import 'package:nerd_flutter/features/recipe/model/repo/recipe_repo.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,7 +25,7 @@ import 'package:nerd_flutter/features/receipe/model/repo/api_repo.dart' as _i2;
 /// A class which mocks [APIRepo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAPIRepo extends _i1.Mock implements _i2.APIRepo {
+class MockAPIRepo extends _i1.Mock implements _i2.RecipeRepo {
   MockAPIRepo() {
     _i1.throwOnMissingStub(this);
   }
@@ -37,7 +36,6 @@ class MockAPIRepo extends _i1.Mock implements _i2.APIRepo {
           #getRecipes,
           [],
         ),
-        returnValue:
-            _i3.Future<List<_i4.RecipeModel>>.value(<_i4.RecipeModel>[]),
+        returnValue: _i3.Future<List<_i4.RecipeModel>>.value(<_i4.RecipeModel>[]),
       ) as _i3.Future<List<_i4.RecipeModel>>);
 }

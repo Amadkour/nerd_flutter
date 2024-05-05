@@ -8,7 +8,7 @@ void main() {
   MaterialApp materialApp = MaterialApp(
     debugShowCheckedModeBanner: false,
     onGenerateRoute: ioc<MyRoute>().onNavigateByName,
-    initialRoute: 'recipe',
+    initialRoute: 'login',
   );
   runApp(materialApp);
 }
